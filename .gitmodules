@@ -1,1 +1,3 @@
-
+[submodule "PSI_Frontend"]
+	path = PSI_Frontend
+	url = https://github.com/kacpermejs/PSI_Frontend.git
