@@ -1,0 +1,38 @@
+services:
+  frontend:
+    environment:
+      - ENVIRONMENT=Production
+    container_name: frontend
+    image: ${DOCKER_REGISTRY-}psi_frontend
+    build:
+      context: ./PSI_Frontend
+      dockerfile: Dockerfile
+    networks:
+      - app-network
+
+  # backend:
+  #   container_name: backend
+  #   image: ${DOCKER_REGISTRY-}backend
+  #   build:
+  #     context: .
+  #     dockerfile: backend/Dockerfile
+  #   networks:
+  #     - app-network
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.middleware.conf:/etc/nginx/nginx.conf
+    # depends_on:
+    #   - backend
+    networks:
+      - app-network
+      
+networks:
+  app-network:
+    driver: bridge
