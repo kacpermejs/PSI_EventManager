@@ -1,3 +1,6 @@
 [submodule "PSI_Frontend"]
 	path = PSI_Frontend
 	url = https://github.com/kacpermejs/PSI_Frontend.git
+[submodule "PSI_EventService"]
+	path = PSI_EventService
+	url = https://github.com/kacpermejs/PSI_EventService.git
