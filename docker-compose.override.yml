@@ -1,22 +1,24 @@
 services:
   frontend:
-    container_name: frontend-dev
+    ports:
+      - 4200:4200
     environment:
-      - ENVIRONMENT=Dev
+      ENVIRONMENT: Dev
+      NODE_ENV: development
     build:
       context: ./PSI_Frontend
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
       - "/usr/src/app/node_modules"
       - "./PSI_Frontend/:/usr/src/app"
-  # backend:
-  #   container_name: backend-dev
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #     - ASPNETCORE_HTTP_PORTS=8080
-  #     - ASPNETCORE_HTTPS_PORTS=8081
-  #   volumes:
-  #     - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-  #     - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
-  nginx:
-    container_name: nginx-dev
+
+  event-service:
+    ports:
+      - 8080:8080
+    build:
+      args:
+        SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
+
+  postgres-events:
+    ports:
+      - "5432:5432"
