@@ -7,7 +7,7 @@ services:
       NODE_ENV: development
     build:
       context: ./PSI_Frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     volumes:
       - "/usr/src/app/node_modules"
       - "./PSI_Frontend/:/usr/src/app"
