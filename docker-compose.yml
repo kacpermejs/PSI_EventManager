@@ -17,7 +17,7 @@ services:
       context: ./PSI_EventService
       dockerfile: Dockerfile
       args:
-        SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
+        SPRING_PROFILES_ACTIVE: prod
     networks:
       - app-network
 
