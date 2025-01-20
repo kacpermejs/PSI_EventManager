@@ -4,3 +4,9 @@
 [submodule "PSI_EventService"]
 	path = PSI_EventService
 	url = https://github.com/kacpermejs/PSI_EventService.git
+[submodule "PSI_OrderService"]
+	path = PSI_OrderService
+	url = https://github.com/kacpermejs/PSI_OrderService.git
+[submodule "PSI_TicketService"]
+	path = PSI_TicketService
+	url = https://github.com/kacpermejs/PSI_TicketService.git

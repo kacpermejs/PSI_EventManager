@@ -21,6 +21,28 @@ services:
     networks:
       - app-network
 
+  order-service:
+    container_name: order-service
+    image: ${DOCKER_REGISTRY-}order-service
+    build:
+      context: ./PSI_OrderService
+      dockerfile: Dockerfile
+      args:
+        SPRING_PROFILES_ACTIVE: prod
+    networks:
+      - app-network
+
+  ticket-service:
+    container_name: ticket-service
+    image: ${DOCKER_REGISTRY-}ticket-service
+    build:
+      context: ./PSI_TicketService
+      dockerfile: Dockerfile
+      args:
+        SPRING_PROFILES_ACTIVE: prod
+    networks:
+      - app-network
+
   nginx:
     container_name: nginx
     image: nginx
@@ -36,15 +58,16 @@ services:
       - app-network
 
   # Postgres inside docker for testing
-  postgres-events:
+  postgres:
     image: postgres:16
-    container_name: postgres-events
+    container_name: postgres
     environment:
-      POSTGRES_USER: event_user
-      POSTGRES_PASSWORD: event_password
-      POSTGRES_DB: events
+      POSTGRES_USER: mainuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
     volumes:
-      - events-pgdata:/var/lib/postgresql/data 
+      - pgdata:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d:ro
     networks:
       - app-network
       
@@ -53,4 +76,4 @@ networks:
     driver: bridge
 
 volumes:
-  events-pgdata: {}
+  pgdata: {}
