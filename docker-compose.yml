@@ -2,7 +2,7 @@ services:
   frontend:
     environment:
       ENVIRONMENT: Production
-      AWS_REGION: ${AWS_USER_POOL_ID}
+      AWS_REGION: ${AWS_REGION}
       AWS_USER_POOL_ID: ${AWS_USER_POOL_ID}
       COGNITO_APP_CLIENT_ID: ${COGNITO_APP_CLIENT_ID}
     container_name: frontend
